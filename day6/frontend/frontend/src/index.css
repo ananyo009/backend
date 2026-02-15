@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html , body{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+.notes{
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+
+.notes{
+  height: 300px;
+  width: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  gap:10px;
+}
+
+.note{
+  height: fit-content;
+  width: fit-content;
+  background-color: gray;
+  padding: 40px;
+  border-radius: 20px;
+}
