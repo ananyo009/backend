@@ -8,7 +8,7 @@ const App = () => {
 
   
   function fetchData() {
-    axios.get("http://localhost:3000/api/notes").then((res) => {
+    axios.get("https://backend-1-qb7f.onrender.com/api/notes").then((res) => {
       setnotes(res.data.notes);
     });
   }
@@ -19,21 +19,25 @@ const App = () => {
 
     console.log(title.value, description.value)
     
-    axios.post("http://localhost:3000/api/notes", {
-      title: title.value,
-      description: description.value
-    }).then(res => {
-      console.log(res.data);
-      fetchData();
-      e.target.reset()
-    });
+    axios
+      .post("https://backend-1-qb7f.onrender.com/api/notes", {
+        title: title.value,
+        description: description.value,
+      })
+      .then((res) => {
+        console.log(res.data);
+        fetchData();
+        e.target.reset();
+      });
   }
   
   function noteDelete(noteid) {
-    axios.delete("http://localhost:3000/api/notes/" + noteid).then(res => {
-      console.log(res.data);
-      fetchData();
-   });
+    axios
+      .delete("https://backend-1-qb7f.onrender.com/api/notes/" + noteid)
+      .then((res) => {
+        console.log(res.data);
+        fetchData();
+      });
   }
 
 
