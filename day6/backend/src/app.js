@@ -3,8 +3,12 @@ const express = require("express")
 const app = express();
 const cors = require("cors")
 
+const path = require('path')
+
 app.use(express.json());//middleware
 app.use(cors());
+app.use(express.static("./public"))
+
 
 
 
@@ -49,6 +53,11 @@ app.patch("/api/notes/:id", async (req, res) => {
     res.status(200).json({
         message:"note updated successfully"
     })
+})
+
+// serve frontend for any other routes (keep after API routes)
+app.use('*name', (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "/public/index.html"))
 })
 
 module.exports = app
