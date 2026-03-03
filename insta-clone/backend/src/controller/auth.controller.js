@@ -1,0 +1,98 @@
+
+
+const crypto = require("crypto");
+const userModel = require("../model/user.model");
+
+const jwt = require("jsonwebtoken");
+
+
+const registerController = async (req, res) => {
+  const { username, email, password, bio, Profileimage } = req.body;
+
+  const isUserAlreadyExist = await userModel.findOne({
+    $or: [{ username }, { email }],
+  });
+
+  if (isUserAlreadyExist) {
+    return res.status(409).json({
+      message:
+        "user already exists" +
+        (isUserAlreadyExist.email === email
+          ? "email already exists"
+          : "username already exists"),
+    });
+  }
+
+  const user = await userModel.create({
+    username,
+    email,
+    password: crypto.createHash("md5").update(password).digest("hex"),
+    bio,
+    Profileimage,
+  });
+
+  const token = jwt.sign(
+    {
+      userid: user._id,
+    },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: "1d" },
+  );
+
+  res.cookie("token", token);
+
+  res.status(201).json({
+    message: "registered successfully",
+    email: user.email,
+    username: user.username,
+    bio: user.bio,
+    Profileimage: user.Profileimage,
+  });
+};
+
+const loginController = async (req, res) => {
+  const { username, email, password } = req.body;
+
+  const User = await userModel.findOne({
+    $or: [{ username: username }, { email: email }],
+  });
+
+  if (!User) {
+    return res.status(404).json({
+      message: "user does not exists",
+    });
+  }
+
+  const hash = crypto.createHash("md5").update(password).digest("hex");
+
+  const isPasswordCorrect = hash === User.password;
+
+  if (!isPasswordCorrect) {
+    return res.status(401).json({
+      message: "password is incorrect",
+    });
+  }
+
+  const token = jwt.sign(
+    {
+      userid: User._id,
+    },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: "1d" },
+  );
+
+  res.cookie("token", token);
+
+  res.status(200).json({
+    message: "login successful",
+    email: User.email,
+    username: User.username,
+    bio: User.bio,
+    Profileimage: User.Profileimage,
+  });
+};
+
+module.exports = {
+    registerController,
+    loginController
+}
