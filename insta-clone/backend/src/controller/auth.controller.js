@@ -34,6 +34,7 @@ const registerController = async (req, res) => {
   const token = jwt.sign(
     {
       userid: user._id,
+      username: user.username,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: "1d" },
@@ -43,6 +44,7 @@ const registerController = async (req, res) => {
 
   res.status(201).json({
     message: "registered successfully",
+    token: token,
     email: user.email,
     username: user.username,
     bio: user.bio,
@@ -74,6 +76,7 @@ const loginController = async (req, res) => {
   const token = jwt.sign(
     {
       userid: User._id,
+      username: User.username
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: "1d" },
@@ -83,6 +86,7 @@ const loginController = async (req, res) => {
 
   res.status(200).json({
     message: "login successful",
+    token: token,
     email: User.email,
     username: User.username,
     bio: User.bio,
@@ -90,7 +94,25 @@ const loginController = async (req, res) => {
   });
 };
 
+async function getMecontroller(req ,res) {
+  const userId = req.user.userid
+
+  const user = await userModel.findById(userId)
+
+  res.status(200).json({
+    user: {
+      username: user.username,
+      email: user.email,
+      bio: user.bio,
+      profilePic: user.Profileimage,
+      userId:user._id
+    }
+  })
+
+}
+
 module.exports = {
     registerController,
-    loginController
+  loginController,
+    getMecontroller
 }

@@ -1,0 +1,86 @@
+@mixin flex-column($gap:0rem){
+    display: flex;
+    flex-direction: column;
+    gap:$gap;
+}
+
+
+
+main{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:linear-gradient(45deg ,#FF954D,#FF3C66,#C53096);
+    padding: 0rem 1rem;
+.form-container{
+    height: fit-content;
+    width: 21rem;
+    @include flex-column(0rem);
+    background-color: rgba(240, 234, 234, 0.269);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 2rem;
+    padding: 1.5rem 1rem;
+
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 2rem; // Must match the parent
+        padding: 3px; // This defines the "thickness" of your border
+        background: linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, 0.5), 
+            rgba(255, 255, 255, 0.1)
+        );
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none; // Ensures clicks pass through to inputs
+    }
+    
+    @media (min-width: 768px) {
+        width: 450px;
+}
+
+    h2{
+        margin-bottom: 1.2rem;
+        align-self: center;
+    }
+  
+
+form{
+    @include flex-column(1.2rem);
+    justify-content: center;
+    
+    input{
+        border: none;
+        outline:none;
+        padding-inline:1.4rem ;
+        padding-block: 1.2rem;
+        border-radius: 1rem;
+        font-size: 1.2rem;
+    }
+
+    
+}
+p{
+    margin-top: 0.5rem;
+    font-size: 1rem;
+.toggle-form{
+    color: royalblue;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+}
+}
+}
+
+
+
