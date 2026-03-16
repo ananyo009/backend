@@ -2,7 +2,6 @@ import React from 'react'
 import '../styles/form.scss'
 import { Link } from 'react-router'
 import { useState } from 'react'
-import axios from 'axios'
 import Authuse from '../hooks/userAuth'
 import { useNavigate } from 'react-router'
 
@@ -12,7 +11,7 @@ const Login = () => {
 
     const { handleLogin, loading } = Authuse()
 
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     
     if (loading) {
         return (
@@ -26,13 +25,10 @@ const Login = () => {
     async function handlesubmit(e) {
         e.preventDefault();
         
-        await handleLogin(username, password).then(res => {
-            console.log(res)
-        })
+        await handleLogin(username, password)
 
-        console.log("user logged in")
-        
-        Navigate("/")
+        navigate('/feed')
+   
         
     }
   return (
@@ -41,7 +37,7 @@ const Login = () => {
               <h2>Login</h2>
               <form onSubmit={handlesubmit}>
                   <input onInput={(e)=>{setusername(e.target.value)}} type="text" name="username" placeholder='enter username' />
-                  <input onInput={(e)=>{setpassword(e.target.value)}} type="password" name="password" placeholder='enter password' />
+                  <input onInput={(e)=>{setpassword(e.target.value)}} type="password" name="password" placeholder='enter password' required />
                   <button type='submit' className='button primary'>Login</button>
               </form>
               <p>Don't have an account? <Link className="toggle-form" to="/register">Register</Link></p>

@@ -10,14 +10,25 @@ const Register = () => {
     const [username, setusername] = useState("")
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("")
-   const {handleRegister} = Authuse()
+  const { handleRegister, loading } = Authuse()
+  
 
     async function handleSubmit(e) {
-        e.preventDefault();
+      e.preventDefault();
+      
+      if (loading) {
+        return (
+          <main>
+            <h1>Loading...</h1>
+          </main>
+        )
+      }
 
       handleRegister(email, username, password).then(res => {
           console.log(res)
-        })
+      })
+      
+
       
     }
 

@@ -1,0 +1,131 @@
+.post-feed{
+    width: 100%;
+
+    @media(min-width:450px){
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-evenly;
+        align-items: center;
+        gap:0.6rem;
+    }
+
+    
+    .posts{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        padding: 0.5rem;
+
+         @media(min-width:450px){
+        max-width:450px;
+    }
+
+        
+        .post{
+            height: auto;
+            width: 100%;
+            padding: 0.5rem;
+            background-color: rgba(255, 255, 255, 0.443);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(5px);
+            border-radius: 1.2rem;
+            display: flex;
+            gap:1rem;
+            flex-direction: column;
+
+             &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 1.2rem; // Must match the parent
+        padding: 3px; // This defines the "thickness" of your border
+        background: linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, 0.5), 
+            rgba(255, 255, 255, 0.1)
+        );
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none; // Ensures clicks pass through to inputs
+
+       
+    }
+            .username{
+                display: flex;
+                gap:1rem;
+                align-items: center;
+                .wrapper{
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 3px solid transparent;
+                    background:conic-gradient(from 45deg ,#FF954D,#FF3C66,#C53096) border-box;
+                    img{
+                        width: 4rem;
+                        height: 4rem;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        object-position: center;
+                    }
+                }
+                h2{
+                    color: black;
+                }
+            }
+            img{
+                max-height:95%;
+                width: 100%;
+                border-radius: 1.2rem;
+
+                @media(min-width: 450px){
+                    height: 350px;
+                }
+            }
+            .bottom{
+                display: flex;
+                justify-content: space-between;
+                .left{
+                    display: flex;
+                    gap:1.2rem;
+                    .liked{
+                        color:red;
+                    }
+                    button{
+                        background-color: transparent;
+                        border: none;
+                        outline: none;
+                    }
+                    svg{
+                        width: 1.5rem;
+                        aspect-ratio: 1/1;
+                        color:black;
+                    }
+
+                }
+                .right{
+                 button{
+                        background-color: transparent;
+                        border: none;
+                        outline: none;
+                    }
+                    svg{
+                        width: 1.5rem;
+                        aspect-ratio: 1/1;
+                        color:black;
+                    }
+                }
+            }
+            .caption{
+                font-size: 1.2rem;
+                color: black;
+                font-weight: 400;
+            }
+        }
+    }
+}

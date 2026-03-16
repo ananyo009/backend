@@ -57,7 +57,7 @@ const loginController = async (req, res) => {
 
   const User = await userModel.findOne({
     $or: [{ username: username }, { email: email }],
-  });
+  }).select("+password");
 
   if (!User) {
     return res.status(404).json({
@@ -86,11 +86,13 @@ const loginController = async (req, res) => {
 
   res.status(200).json({
     message: "login successful",
-    token: token,
-    email: User.email,
-    username: User.username,
-    bio: User.bio,
-    Profileimage: User.Profileimage,
+    user: {
+      token: token,
+      email: User.email,
+      username: User.username,
+      bio: User.bio,
+      Profileimage: User.Profileimage,
+    }
   });
 };
 

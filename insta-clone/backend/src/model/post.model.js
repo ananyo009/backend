@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+mongoose.set("strictPopulate", false);
+
 const postSchema = new mongoose.Schema({
     imageUrl: {
         type: String,
@@ -11,7 +13,7 @@ const postSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+        ref: "user",
         required: [true, "user is required"]
     }
 })
