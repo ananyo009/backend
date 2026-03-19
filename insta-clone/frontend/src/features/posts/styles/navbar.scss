@@ -1,0 +1,41 @@
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem;
+
+    h2{
+        font-size: 1.2rem;
+        font-family: snap;
+        color:black;
+        background-color: rgba(255, 255, 255, 0.434);
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(5px);
+        border-radius: 1.2rem;
+        padding-block: 1rem;
+        padding-inline: 2rem;
+
+         &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 1.2rem; // Must match the parent
+        padding: 3px; // This defines the "thickness" of your border
+        background: linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, 0.5), 
+            rgba(255, 255, 255, 0.1)
+        );
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none; // Ensures clicks pass through to inputs
+    }
+       
+    }
+
+   
+    
+}

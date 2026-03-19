@@ -1,7 +1,10 @@
 import React from 'react'
 import '../styles/post.scss'
 
-const Post = ({post,user,id}) => {
+const Post = ({ post, user, id, handlelike, handleunlike }) => {
+  
+  // console.log(post.isLiked)
+
   return (
     <div className="post-feed">
       <div className="posts">
@@ -15,8 +18,13 @@ const Post = ({post,user,id}) => {
           <img src={post.imageUrl} alt="" />
           <div className="bottom">
             <div className="left">
-              <button>
-                <svg className={post.isLiked?"liked":""}
+              <button
+                onClick={() => {
+                  post.isLiked ? handleunlike(post._id) : handlelike(post._id);
+                }}
+              >
+                <svg
+                  className={post.isLiked ? "liked" : ""}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
@@ -45,7 +53,7 @@ const Post = ({post,user,id}) => {
             </div>
             <div className="right">
               <button>
-                <svg 
+                <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"

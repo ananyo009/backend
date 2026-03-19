@@ -68,6 +68,31 @@ form{
         font-size: 1.2rem;
     }
 
+    .password-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding-inline: 1rem;
+        align-items: center;
+        background-color: white;
+        border-radius: 1.2rem;
+        input{
+            width: 90%;
+        }
+        svg{
+            width: 2rem;
+            aspect-ratio: 1/1;
+            color:black;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        svg:active{
+            transform: scale(0.94);
+        }
+
+    }
+
     
 }
 p{

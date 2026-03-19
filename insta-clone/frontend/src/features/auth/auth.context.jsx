@@ -25,7 +25,7 @@ export function AuthProvider({ children }) {
         }
     }
 
-    const handleRegister = async (username, email, password)=>{
+    const handleRegister = async (email, username, password)=>{
         setloading(true);
 
         try {

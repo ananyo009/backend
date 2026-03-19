@@ -11,6 +11,7 @@ export const PostContextProvider = ({children})=>{
     const [feed, setfeed] = useState(null)
 
 
+
     return (
         <postContext.Provider value={{loading , setloading,post,setpost, setfeed, feed}}>
         {children}

@@ -1,5 +1,6 @@
 .post-feed{
     width: 100%;
+    display: flex;
 
     @media(min-width:450px){
         display: flex;
@@ -26,7 +27,7 @@
             height: auto;
             width: 100%;
             padding: 0.5rem;
-            background-color: rgba(255, 255, 255, 0.443);
+            background-color: rgba(255, 255, 255, 0.269);
             backdrop-filter: blur(2px);
             -webkit-backdrop-filter: blur(5px);
             border-radius: 1.2rem;
@@ -97,6 +98,7 @@
                         color:red;
                     }
                     button{
+                        cursor: pointer;
                         background-color: transparent;
                         border: none;
                         outline: none;
@@ -110,6 +112,7 @@
                 }
                 .right{
                  button{
+                    cursor: pointer;
                         background-color: transparent;
                         border: none;
                         outline: none;

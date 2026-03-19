@@ -1,5 +1,11 @@
 @use "./features/auth/styles/button.scss";
 
+
+@font-face {
+    font-family: snap;
+    src: url('../public/Managiri.otf');
+}
+
 *{
     margin: 0;
     padding: 0;

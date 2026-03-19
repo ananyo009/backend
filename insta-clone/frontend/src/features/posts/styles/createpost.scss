@@ -1,0 +1,73 @@
+.create{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2rem;
+    
+    .back{
+        position: absolute;
+        left: 5%;
+        top:4%;
+        svg{
+            color:black;
+            width: 2rem;
+            aspect-ratio: 1/1;
+        }
+    }
+
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap:1rem;
+        background-color: rgba(255, 255, 255, 0.317);
+        padding: 2rem;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(5px);
+        border-radius: 2rem;
+
+         &::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        border-radius: 2rem; // Must match the parent
+        padding: 3px; // This defines the "thickness" of your border
+        background: linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, 0.5), 
+            rgba(255, 255, 255, 0.1)
+        );
+        -webkit-mask: 
+            linear-gradient(#fff 0 0) content-box, 
+            linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none; // Ensures clicks pass through to inputs
+    }
+
+    @media(min-width:450px){
+        max-width: 450px;
+    }
+
+        .Image-label{
+            background-color: white;
+            color:black;
+            padding: 1rem 5rem;
+            border-radius: 1.2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-family: 600;
+        }
+
+        input{
+            font-size: 1.5rem;
+            outline: none;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 1rem ;
+            overflow-x: scroll;
+        }
+    }
+}

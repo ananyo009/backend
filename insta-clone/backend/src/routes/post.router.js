@@ -17,6 +17,8 @@ postRouter.get("/details/:postId", indetifyUser, postConroller.postDetailsContro
 
 postRouter.post("/like/:postId", indetifyUser, postConroller.likePostController)
 
+postRouter.post("/unlike/:postId",indentifyUser,postConroller.unlikePostController)
+
 postRouter.get("/feed",indentifyUser,postConroller.postfeedController)
 
 module.exports = postRouter;
